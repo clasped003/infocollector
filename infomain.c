@@ -63,20 +63,22 @@ puts("What is your gender?('M'ale, 'F'emale, or 'O'ther)");
 }//Gender while
 
 //Age Entry
-int ageEntryLoop = 1;
-
-while(ageEntryLoop == 1){
-  puts("What is your age?");
-  int uAge;
-  scanf("%d", &uAge);
-  getchar();
-  if(uAge > 125 || uAge < 1 || uAge != '\0'){
-    puts("Invalid age, please re-enter.");
-  }else{
-  puts("Age accepted");
-  ageEntryLoop = 0;
-  }
-}  
+int ageLoop = 0;
+int uAge = 1;
+int numberRead = 0;
+  do {
+    puts("What is your Age?(Numbers only and Age must be between 1 to 125)");
+    numberRead = scanf("%d", &uAge);
+    if(numberRead != 1 || uAge > 125){
+        puts("That is not a correct Age. Please enter an age.\n");
+        getchar();
+        ageLoop = 1;//Error occured
+    }else{
+    printf("You entered: %d\n", uAge);
+    getchar();
+    ageLoop = 0;
+    }
+  }while (ageLoop != 0);
 //Class Selection			
 int classChoiceLoop = 1;
 while(classChoiceLoop == 1){	
@@ -103,8 +105,9 @@ while(classChoiceLoop == 1){
 				int confirmLooper = 1;
 				while(confirmLooper == 1){
 						system("clear");
-					 printf("Your Name is: '%s' \n", uName);
+					 printf("Your Name is: %s \n", uName);
 					 printf("Your Gender is: '%s' \n", uGender);						
+           printf("Your Age is: '%d' \n", uAge);
 					 printf("Your Admin Status is: '%s' \n", uClass);    
 				   puts("Do you wish to proceed or would you like to redo your profile?");
 				   puts("Press 'y' to continue, or 'n' to redo your profile.\n");
