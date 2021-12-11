@@ -7,9 +7,12 @@
 their profile. This will be transferred over to the profile struct later on.
 
 Notes:
+-Need to find way to bypass multiple error prompts when entering
+string for an age.
+-Need to try to utilize a function other than scanf for age input(fgets?)
 -Need to properly set up age entry prompt to not use getchar()
 XNeed to edit "class selection" to "user status" selection
--Need to upload to github
+XNeed to upload to github
 XNeed to clean up prompts to generalize for all-use purpose
  */
 
@@ -39,6 +42,7 @@ if (fgets(uName, 20, stdin) != NULL) {
 				} //if else
 		}//if
 }//Name while		
+
 //Gender Selection
 int genChoiceLoop = 1;
 while(genChoiceLoop == 1){				
@@ -69,16 +73,16 @@ int numberRead = 0;
   do {
     puts("What is your Age?(Numbers only and Age must be between 1 to 125)");
     numberRead = scanf("%d", &uAge);
+    getchar();
     if(numberRead != 1 || uAge > 125){
         puts("That is not a correct Age. Please enter an age.\n");
-        getchar();
         ageLoop = 1;//Error occured
     }else{
     printf("You entered: %d\n", uAge);
-    getchar();
     ageLoop = 0;
     }
   }while (ageLoop != 0);
+
 //Class Selection			
 int classChoiceLoop = 1;
 while(classChoiceLoop == 1){	
@@ -101,6 +105,7 @@ while(classChoiceLoop == 1){
 						puts("Wrong selection -- Try again. . .");
 				}//else if
 }	//Class while
+
 //User information review. Approve or redo profile prompt.
 				int confirmLooper = 1;
 				while(confirmLooper == 1){
